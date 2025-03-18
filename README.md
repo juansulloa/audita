@@ -1,6 +1,6 @@
-# Audita - Species Annotation Tool
+# Audita - Segment Annotation Tool
 
-This script provides a graphical user interface (GUI) for quickly annotating audio segments from a CSV file. It allows users to review spectrograms and sounds associated with species observations, record responses, and navigate through the dataset.
+This repository provides a graphical user interface (GUI) for quickly annotating audio segments from a CSV file. It allows users to review spectrograms and sounds associated with species observations, record responses, and navigate through the dataset.
 
 ## Features
 
