@@ -20,7 +20,7 @@ from playsound import playsound
 from tkinter import messagebox
 
 # CSV file to store responses
-csv_filename = "../output/segments_revised.csv"  # Update with the specific path
+csv_filename = os.path.normpath("../output/segments_revised.csv")  # Normalize path for cross-platform compatibility
 
 # Function to load data from CSV
 def load_data_from_csv():
@@ -32,8 +32,8 @@ def load_data_from_csv():
         reader = csv.DictReader(file)
         for row in reader:
             if 'observationID' in row and 'scientificName' in row and 'segmentsFilePath' in row:
-                sound = row['segmentsFilePath']
-                image = os.path.splitext(sound)[0] + '.png'
+                sound = os.path.normpath(row['segmentsFilePath'])  # Normalize path
+                image = os.path.normpath(os.path.splitext(sound)[0] + '.png')  # Normalize path
                 species = row['scientificName']
                 data.append({
                     "observationID": row['observationID'],
@@ -79,7 +79,7 @@ def find_first_unannotated():
 # Function to play sound in a separate thread
 def play_sound():
     global current_index
-    sound_file = data[current_index]["sound"]
+    sound_file = os.path.normpath(data[current_index]["sound"])  # Normalize path
     threading.Thread(target=playsound, args=(sound_file,), daemon=True).start()
 
 # Function to record response and move to the next sample
@@ -141,7 +141,8 @@ def update_progress_label():
 def update_image():
     global current_index
     try:
-        img = Image.open(data[current_index]["image"])
+        img_path = os.path.normpath(data[current_index]["image"])  # Normalize path
+        img = Image.open(img_path)
         img = img.resize((600, 500))
         img_tk = ImageTk.PhotoImage(img)
         image_label.config(image=img_tk)
