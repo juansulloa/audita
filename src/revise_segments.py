@@ -16,11 +16,21 @@ from PIL import Image, ImageTk
 import csv
 import os
 import threading
-from playsound import playsound
 from tkinter import messagebox
+import subprocess
+import sys
 
 # CSV file to store responses
 csv_filename = os.path.normpath("../output/segments_revised.csv")  # Normalize path for cross-platform compatibility
+
+# Function to play sound
+def playsound(file_path):
+    if sys.platform == "win32":
+        subprocess.run(["powershell", "-c", f"(New-Object Media.SoundPlayer '{file_path}').PlaySync()"])
+    elif sys.platform == "darwin":  # macOS
+        subprocess.run(["afplay", file_path])
+    else:  # Linux
+        subprocess.run(["aplay", file_path])
 
 # Function to load data from CSV
 def load_data_from_csv():

@@ -11,27 +11,14 @@ This repository provides a graphical user interface (GUI) for quickly annotating
 ## Requirements
 
 - Python 3.10, 3.11, 3.12
-- Required Python libraries:
-  - **Native libraries**:
+- Only requires native Python libraries (no need to install packages)
     - `tkinter`
     - `csv`
     - `os`
     - `threading`
-  - **Non-native libraries**:
-    - `Pillow`
-    - `playsound`
+    - `sys`
+    - `subprocess`
 
-## Installation
-
-1. Clone or download this repository.
-2. Install the required Python libraries using pip:
-   ```bash
-   pip install pillow playsound
-   ```
-3. On MacOSx, install PyObjC to ensure compatibility with `playsound`:
-   ```bash
-   pip install pyobjc
-   ```
 ## Usage
 Set inputs:
   - segments_revised.csv: CSV file with the segments data and annotations.
