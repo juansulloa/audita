@@ -25,6 +25,36 @@ csv_filename = os.path.normpath("../output/segments_revised.csv")  # Normalize p
 
 # Function to play sound
 def playsound(file_path):
+    """
+    Plays an audio file using the system's default sound player.
+
+    This function detects the operating system and executes the appropriate command 
+    to play the given audio file.
+
+    Parameters
+    ----------
+    file_path : str
+        Path to the audio file to be played.
+
+    Raises
+    ------
+    FileNotFoundError
+        If the specified audio file does not exist.
+    subprocess.CalledProcessError
+        If the system command fails to execute properly.
+
+    Notes
+    -----
+    - On Windows, it uses PowerShell with `Media.SoundPlayer`.
+    - On macOS, it uses the `afplay` command.
+    - On Linux, it uses the `aplay` command.
+
+    Examples
+    --------
+    Play a `.wav` file:
+
+    >>> playsound("example.wav")
+    """
     if sys.platform == "win32":
         subprocess.run(["powershell", "-c", f"(New-Object Media.SoundPlayer '{file_path}').PlaySync()"])
     elif sys.platform == "darwin":  # macOS
